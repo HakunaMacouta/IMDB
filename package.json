@@ -1,7 +1,7 @@
 {
-  "name": "imbd",
+  "name": "imdb",
   "version": "1.0.0",
-  "description": "IMBD Project for LP DAWIN Alt",
+  "description": "IMDB Project for LP DAWIN Alt",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
