@@ -1,9 +1,7 @@
 #Webstorm
 .idea
-<<<<<<< HEAD
 dist
-=======
->>>>>>> 1d2588b7524cb1153bf54a10206b6cf37ef3666a
+package-lock.json
 
 # Logs
 logs
