@@ -8,6 +8,9 @@
  */
 import Vue from 'vue' //librairie "vue" dans node_modules
 import app from './app.vue' //fichier app.vue local
+import movieItem from './components/movieitem.vue'
+
+Vue.component('movie-item', movieItem);
 
 new Vue({
 	el: '#app',

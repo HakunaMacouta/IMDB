@@ -1,33 +1,79 @@
 <template>
-	<table class="u-full-width">
-		<thead>
-		<tr>
-			<th>Name</th>
-			<th>Realease Date</th>
-			<th>Director</th>
-			<th>Synopsis</th>
-			<th>Edit</th>
-			<th>Delete</th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr v-for="">
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td><button class="button fa fa-pencil-alt" v-on:click="modify(movie)"></button></td>
-			<td><button class="button fa fa-trash-alt" v-on:click="remove(movie)"></button></td>
-		</tr>
-		</tbody>
-	</table>
+	<div id="app">
+        <span v-if="display">
+            {{ message }}
+        </span>
+		<p>First letter : {{firstletter}}</p>
+
+		<p><input type="text" v-model="message" /></p>
+		<p><button v-on:click="newmovie1">Add "New movie"</button></p>
+
+		<hr>
+
+		<p>Movie number : {{movies.length}}</p>
+		<p>New movie<br />
+			Title : <input type="text" v-model="movie_to_add.title" /><br />
+			Year : <input type="text" v-model="movie_to_add.year" /><br />
+			Synopsys : <textarea v-model="movie_to_add.synopsys"></textarea><br />
+			<button v-on:click="newmovie2">Add</button></p>
+
+		Search : <input type="text" v-model="search" />
+		<ul>
+			<movie-item v-for="(movie, index) in movies_search" v-bind:key="movie.title" v-bind:movie="movie" v-on:edit="edit" v-on:remove="remove(index)"></movie-item>
+		</ul>
+
+		<p v-if="movie_to_edit">New movie<br />
+			Title : <input type="text" v-model="movie_to_edit.title" /><br />
+			Year : <input type="text" v-model="movie_to_edit.year" /><br />
+			Synopsys : <textarea v-model="movie_to_edit.synopsys"></textarea><br />
+			<button v-on:click="save">Save</button></p>
+	</div>
 </template>
 
 <script>
 	export default {
 		data() {
 			return {
-				message: "Hello"
+				message: 'Hello Vue!',
+				display: true,
+				movie_to_add: {},
+				movie_to_edit: null,
+				search: "",
+				movies: [
+					{
+						title: "L'étrange noël de M. Jack",
+						year: 1994,
+						synopsys: "Jack Skellington, un épouvantail squelettique surnommé « le Roi des citrouilles » (Pumpkin King en version originale), vit dans la ville d'Halloween. En tant que maître de l'épouvante, Jack occupe ses journées à préparer la prochaine fête d'Halloween."
+					},
+					{
+						title: "Interstellar",
+						year: 2014,
+						synopsys: "Alors que la Terre se meurt, une équipe d'astronautes franchit un trou de ver apparu près de Saturne conduisant à une autre galaxie, cela dans le but d'explorer un nouveau système stellaire et l'espoir de trouver une nouvelle planète habitable par l'humanité afin de la sauver."
+					}
+				]
+			}
+		},
+		methods: {
+			newmovie2: function() {
+				this.movies.push(this.movie_to_add)
+				this.movie_to_add = {}
+			},
+			edit: function(movie) {
+				this.movie_to_edit = movie
+			},
+			save: function() {
+				this.movie_to_edit = null
+			},
+			remove: function(index) {
+				this.movies.splice(index, 1)
+			}
+		},
+		created: function() {
+			console.log("Created")
+		},
+		computed: {
+			movies_search: function() {
+				return this.movies.filter(m => m.title.toLowerCase().indexOf(this.search.toLowerCase())!=-1);
 			}
 		}
 	}
