@@ -1,13 +1,21 @@
 <template>
-	
+	<div>
+		<span id="msg">{{message}}</span>
+	</div>
 </template>
 
 <script>
 	export default {
-		name: "app"
+		data() {
+			return {
+				message: "Hello"
+			}
+		}
 	}
 </script>
 
-<style scoped>
-
+<style>
+	#msg {
+		color: red;
+	}
 </style>
