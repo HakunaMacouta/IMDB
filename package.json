@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "imdb",
   "version": "1.0.0",
   "description": "IMDB Project for LP DAWIN Alt",
@@ -7,6 +8,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --progress --hide-modules",
     "serve": "webpack-dev-server --open --hot"
+=======
+  "name": "imbd",
+  "version": "1.0.0",
+  "description": "IMBD Project for LP DAWIN Alt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> 1d2588b7524cb1153bf54a10206b6cf37ef3666a
   },
   "author": "Thomas Blanc <thomas.hakunamacouta.blanc@gmail.com>",
   "license": "ISC",
@@ -15,15 +24,24 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-3": "^6.24.1",
+<<<<<<< HEAD
     "bower": "^1.8.2",
+=======
+>>>>>>> 1d2588b7524cb1153bf54a10206b6cf37ef3666a
     "css-loader": "^0.28.10",
     "file-loader": "^1.1.11",
     "vue": "^2.5.15",
     "vue-loader": "^14.2.1",
+<<<<<<< HEAD
     "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.5.15",
     "webpack": "^3.11.0",
     "webpack-cli": "^2.0.11",
     "webpack-dev-server": "^2.11.1"
+=======
+    "vue-template-compiler": "^2.5.15",
+    "webpack": "^4.1.1",
+    "webpack-dev-server": "^3.1.1"
+>>>>>>> 1d2588b7524cb1153bf54a10206b6cf37ef3666a
   }
 }

@@ -5,6 +5,7 @@
  * can do whatever you want with this stuff. If we meet some day, and you think
  * this stuff is worth it, you can buy me a beer in return.   Thomas Blanc
  * ----------------------------------------------------------------------------
+<<<<<<< HEAD
  */
 import Vue from 'vue' //librairie "vue" dans node_modules
 import app from './app.vue' //fichier app.vue local
@@ -20,3 +21,4 @@ new Vue({
 });
 
 Vue.config.devtools = true;
+

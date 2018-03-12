@@ -5,6 +5,7 @@
  * can do whatever you want with this stuff. If we meet some day, and you think
  * this stuff is worth it, you can buy me a beer in return.   Thomas Blanc
  * ----------------------------------------------------------------------------
+<<<<<<< HEAD
  */
 let path = require('path');
 let webpack = require('webpack');
