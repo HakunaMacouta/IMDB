@@ -10,7 +10,7 @@ let path = require('path');
 let webpack = require('webpack');
 
 module.exports = {
-	entry: './src/main.js',
+	entry: './src/node/main.js',
 	output: {
 		path: path.resolve(__dirname, './dist'),
 		publicPath: '/dist/',
@@ -19,11 +19,14 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.css$/,
-				use: [
-					'vue-style-loader',
-					'css-loader'
-				],
+				test: /\.scss$/,
+				use: [{
+					loader: "style-loader" // creates style nodes from JS strings
+				}, {
+					loader: "css-loader" // translates CSS into CommonJS
+				}, {
+					loader: "sass-loader" // compiles Sass to CSS
+				}]
 			},
 			{
 				test: /\.vue$/,

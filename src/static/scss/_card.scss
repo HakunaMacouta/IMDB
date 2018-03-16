@@ -1,0 +1,41 @@
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <HakunaMacouta> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Thomas Blanc
+ * ----------------------------------------------------------------------------
+ */
+
+.overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .5s ease;
+	background-color: #373a3d;
+}
+
+.image:hover .overlay {
+	opacity: 0.7;
+}
+
+.overlay-details {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+	a {
+		margin-left:10px;
+		color: white;
+		&: {
+			color: #767b82;
+		}
+	}
+}

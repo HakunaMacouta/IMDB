@@ -6,13 +6,19 @@
  * this stuff is worth it, you can buy me a beer in return.   Thomas Blanc
  * ----------------------------------------------------------------------------
  */
-import Vue from 'vue' //librairie "vue" dans node_modules
-import app from './app.vue' //fichier app.vue local
-import movieItem from './components/movieitem.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import movieList from '../vue/pages/Home/index'
 
-Vue.component('movie-item', movieItem);
+let routes = [
+	{
+		path: '/',
+		component: movieList
+	}
+];
 
-new Vue({
-	el: '#app',
-	render: h => h(app)
+Vue.use(VueRouter);
+
+export const router = new VueRouter({
+	routes,
 });
