@@ -15,19 +15,32 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-3": "^6.24.1",
+    "body-parser": "^1.18.2",
     "bulma": "^0.6.2",
     "css-loader": "^0.28.10",
+    "express": "^4.16.3",
     "file-loader": "^1.1.11",
+    "fs": "0.0.1-security",
+    "sqlite3": "^4.0.0",
+    "style-loader": "^0.20.3",
     "vue": "^2.5.15",
     "vue-loader": "^14.2.1",
     "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.5.15",
+    "vuex": "^3.0.1",
     "webpack-cli": "^2.0.11",
     "webpack-dev-server": "^3.1.1"
   },
   "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.7",
-    "webpack": "^4.1.1"
+    "webpack": "^4.1.1",
+    "sqlite3": "latest"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

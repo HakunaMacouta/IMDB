@@ -6,6 +6,17 @@
  * this stuff is worth it, you can buy me a beer in return.   Thomas Blanc
  * ----------------------------------------------------------------------------
  */
-@import url('https://fonts.googleapis.com/css?family=Poppins');
-@import "various";
-@import "menu";
+const express = require('express');
+const bodyParser = require('body-parser');
+const fs = require('fs');
+require('./database.js');
+require('./routes.js');
+
+const port = 3000;
+
+const app = express();
+module.exports = app;
+
+app.use(bodyParser.json()); //parse JSON body
+app.use(bodyParser.urlencoded()); //parse x-www-form-urlencoded body
+app.listen(port, () => console.log('node server listening on port ' + port.toString()));

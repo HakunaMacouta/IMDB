@@ -1,30 +1,29 @@
 
 <template>
-	<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-		<div class="navbar-brand">
-			<a class="navbar-item" href="https://bulma.io">
-				<img src="src/static/img/IMDB_Logo_2016.svg" alt="Bulma: a modern CSS framework based on Flexbox">
-			</a>
-
-			<div class="navbar-burger">
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-		</div>
-		<div class="navbar-menu">
-			<!-- navbar start, navbar end -->
-			<div class="navbar-start">
-				<!-- navbar items -->
-				<router-link class="navbar-item" to="/">All films</router-link>
-			</div>
-		</div>
-	</nav>
+	<aside class="column is-9 menu" :style="{ height: fullHeight+'px' }" aria-label="main navigation">
+		<img class="menu-logo" src="/src/static/img/logo_flat.png" alt="logo TV Time" />
+	</aside>
 </template>
 
 <script>
 	export default {
-		name: "navbar"
+		name: "navbar",
+		data() {
+			return {
+				fullHeight : document.documentElement.clientHeight
+			}
+		},
+		mounted : function () {
+			window.addEventListener('resize', this.handleResize)
+		},
+		beforeDestroy: function () {
+			window.removeEventListener('resize', this.handleResize)
+		},
+		methods : {
+			handleResize : function() {
+				this.fullHeight = document.documentElement.clientHeight
+			}
+		}
 	}
 </script>
 

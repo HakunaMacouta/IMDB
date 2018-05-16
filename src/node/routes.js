@@ -6,19 +6,12 @@
  * this stuff is worth it, you can buy me a beer in return.   Thomas Blanc
  * ----------------------------------------------------------------------------
  */
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import movieList from '../vue/pages/Home/index'
 
-let routes = [
-	{
-		path: '/',
-		component: movieList
-	}
-];
+let database = require('./database.js');
 
-Vue.use(VueRouter);
 
-export const router = new VueRouter({
-	routes,
-});
+app.get('/api/movies/all', database.list);
+
+app.get('/api/movies/:id', database.view);
+app.post('api/movies/:id', database.update);
+app.post('api/movies', database.add);
