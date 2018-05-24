@@ -1,8 +1,27 @@
 .menu {
-	background-color: #1D1F20;
+	background-color: $primary-color;
+	height: 100vh;
 	.menu-logo {
 		margin: 10px auto 10px auto;
 		display: block;
+	}
+
+	.menu-item {
+		margin:20px;
+	}
+
+	.menu-list a i {
+		margin : 0 10px 0 0;
+	}
+
+	input {
+		background-color: $primary-color-darker;
+		border-color: $primary-color-lighter;
+		color : $primary-color-lighter;
+		&::placeholder {
+			color : $primary-color-lighter;
+			opacity: 1;
+		}
 	}
 }
 

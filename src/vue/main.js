@@ -7,8 +7,12 @@
  * ----------------------------------------------------------------------------
  */
 //Stylesheets
+import 'normalize.css'
 import 'bulma/bulma.sass'
 import '../static/scss/all.scss'
+
+//Scripts
+import anime from 'animejs'
 
 //Vue
 import Vue from 'vue'
@@ -20,7 +24,7 @@ import app from '../vue/app.vue'
 
 // Components
 import movieItem from '../vue/components/thumbnail.vue';
-import navbar from '../vue/components/navbar';
+import navbar from './components/menuSidebar';
 Vue.component('movie-thumbnail', movieItem);
 Vue.component('navbar', navbar);
 

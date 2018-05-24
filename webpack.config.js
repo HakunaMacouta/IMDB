@@ -27,8 +27,10 @@ module.exports = {
 				}, {
 					loader: "sass-loader" // compiles Sass to CSS
 				}]
-
-
+			},
+			{
+				test: /\.css$/,
+				loader : 'css-loader'
 			},
 			{
 				test: /\.vue$/,

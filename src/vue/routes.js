@@ -15,20 +15,14 @@ import movieAdd from './pages/movieAdd'
 let routes = [
 	{
 		path: '/',
+		name: "list",
 		component: moviesList
 	},
 	{
 		path: '/movie/:id',
+		name : 'details',
 		component : movieDetails
 	},
-	{
-		path: '/movie/:id/edit',
-		component : movieEdit
-	},
-	{
-		path: '/add',
-		component : movieAdd
-	}
 
 ];
 
