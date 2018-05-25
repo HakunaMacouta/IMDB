@@ -8,74 +8,62 @@
  */
 import Vue from 'vue'
 import Vuex from "vuex";
+import Axios from "axios";
+
+let url = "http://localhost:3000/api";
 
 Vue.use(Vuex);
 
 export const movieStore = new Vuex.Store({
 	state: {
-		movies: [
-			{
-				id: 1,
-				IMDBkey : "tt0107688",
-				posterURL : "https://ia.media-imdb.com/images/M/MV5BNWE4OTNiM2ItMjY4Ni00ZTViLWFiZmEtZGEyNGY2ZmNlMzIyXkEyXkFqcGdeQXVyMDU5NDcxNw@@._V1_SX300.jpg",
-				title: "L'étrange noël de M. Jack",
-				year: 1994,
-				director : {
-					firstName : 'Tim',
-					lastName : 'Burton',
-					nationality : 'fr',
-					birthDate : '10/01/2017'
-				},
-				genres : ['fantastic'],
-				synopsis: "Jack Skellington, un épouvantail squelettique surnommé « le Roi des citrouilles » (Pumpkin King en version originale), vit dans la ville d'Halloween. En tant que maître de l'épouvante, Jack occupe ses journées à préparer la prochaine fête d'Halloween."
-			},
-			{
-				id: 2,
-				IMDBkey : "tt0107688",
-				posterURL : "https://ia.media-imdb.com/images/M/MV5BNWE4OTNiM2ItMjY4Ni00ZTViLWFiZmEtZGEyNGY2ZmNlMzIyXkEyXkFqcGdeQXVyMDU5NDcxNw@@._V1_SX300.jpg",
-				title: "L'étrange noël de M. Jack",
-				year: 1994,
-				lang: 'fr',
-				director : {
-					firstName : 'Tim',
-					lastName : 'Burton',
-					nationality : 'fr',
-					birthDate : '10/01/2017'
-				},
-				genres : ['fantastic'],
-				synopsis: "Jack Skellington, un épouvantail squelettique surnommé « le Roi des citrouilles » (Pumpkin King en version originale), vit dans la ville d'Halloween. En tant que maître de l'épouvante, Jack occupe ses journées à préparer la prochaine fête d'Halloween."
-			}
-		],
-		genres : ['Comedy', 'Sci-fi', 'Horror', 'Romance', 'Action', 'Thriller', 'Drama', 'Mystery', 'Crime', 'Animation', 'Adventure', 'Fantasy', 'Superhero']
+		movies : [],
+		genres: ['Comedy', 'Sci-fi', 'Horror', 'Romance', 'Action', 'Thriller', 'Drama', 'Mystery', 'Crime', 'Animation', 'Adventure', 'Fantasy', 'Superhero'],
+		nationality: ['Afghan', 'Albanian', 'Algerian', 'American', 'Andorran', 'Angolan', 'Antiguans', 'Argentinean', 'Armenian', 'Australian', 'Austrian', 'Azerbaijani', 'Bahamian', 'Bahraini', 'Bangladeshi', 'Barbadian', 'Barbudans', 'Batswana', 'Belarusian', 'Belgian', 'Belizean', 'Beninese', 'Bhutanese', 'Bolivian', 'Bosnian', 'Brazilian', 'British', 'Bruneian', 'Bulgarian', 'Burkinabe', 'Burmese', 'Burundian', 'Cambodian', 'Cameroonian', 'Canadian', 'Cape Verdean', 'Central African', 'Chadian', 'Chilean', 'Chinese', 'Colombian', 'Comoran', 'Congolese', 'Costa Rican', 'Croatian', 'Cuban', 'Cypriot', 'Czech', 'Danish', 'Djibouti', 'Dominican', 'Dutch', 'East Timorese', 'Ecuadorean', 'Egyptian', 'Emirian', 'Equatorial Guinean', 'Eritrean', 'Estonian', 'Ethiopian', 'Fijian', 'Filipino', 'Finnish', 'French', 'Gabonese', 'Gambian', 'Georgian', 'German', 'Ghanaian', 'Greek', 'Grenadian', 'Guatemalan', 'Guinea-Bissauan', 'Guinean', 'Guyanese', 'Haitian', 'Herzegovinian', 'Honduran', 'Hungarian', 'I-Kiribati', 'Icelander', 'Indian', 'Indonesian', 'Iranian', 'Iraqi', 'Irish', 'Israeli', 'Italian', 'Ivorian', 'Jamaican', 'Japanese', 'Jordanian', 'Kazakhstani', 'Kenyan', 'Kittian and Nevisian', 'Kuwaiti', 'Kyrgyz', 'Laotian', 'Latvian', 'Lebanese', 'Liberian', 'Libyan', 'Liechtensteiner', 'Lithuanian', 'Luxembourger', 'Macedonian', 'Malagasy', 'Malawian', 'Malaysian', 'Maldivan', 'Malian', 'Maltese', 'Marshallese', 'Mauritanian', 'Mauritian', 'Mexican', 'Micronesian', 'Moldovan', 'Monacan', 'Mongolian', 'Moroccan', 'Mosotho', 'Motswana', 'Mozambican', 'Namibian', 'Nauruan', 'Nepalese', 'New Zealander', 'Nicaraguan', 'Nigerian', 'Nigerien', 'North Korean', 'Northern Irish', 'Norwegian', 'Omani', 'Pakistani', 'Palauan', 'Panamanian', 'Papua New Guinean', 'Paraguayan', 'Peruvian', 'Polish', 'Portuguese', 'Qatari', 'Romanian', 'Russian', 'Rwandan', 'Saint Lucian', 'Salvadoran', 'Samoan', 'San Marinese', 'Sao Tomean', 'Saudi', 'Scottish', 'Senegalese', 'Serbian', 'Seychellois', 'Sierra Leonean', 'Singaporean', 'Slovakian', 'Slovenian', 'Solomon Islander', 'Somali', 'South African', 'South Korean', 'Spanish', 'Sri Lankan', 'Sudanese', 'Surinamer', 'Swazi', 'Swedish', 'Swiss', 'Syrian', 'Taiwanese', 'Tajik', 'Tanzanian', 'Thai', 'Togolese', 'Tongan', 'Trinidadian/Tobagonian', 'Tunisian', 'Turkish', 'Tuvaluan', 'Ugandan', 'Ukrainian', 'Uruguayan', 'Uzbekistani', 'Venezuelan', 'Vietnamese', 'Welsh', 'Yemenite', 'Zambian', 'Zimbabwean']
 	},
 	mutations: {
-		addMovie(state) {
-			state.movies.push({
-				id: state.movies.length + 1,
-				title: "L'étrange noël de M. Jack",
-				year: 1994,
-				lang: 'fr',
-				director : {
-					firstName : 'Tim',
-					lastName : 'Burton',
-					nationality : 'fr',
-					birthDate : '10/01/2017'
-				},
-				genres : ['fantastic'],
-				synopsis: "Jack Skellington, un épouvantail squelettique surnommé « le Roi des citrouilles » (Pumpkin King en version originale), vit dans la ville d'Halloween. En tant que maître de l'épouvante, Jack occupe ses journées à préparer la prochaine fête d'Halloween."
-			})
+		allMovies: (state, movies) => {
+			state.movies = movies
 		},
-		removeMovie(state, index) {
-			state.movies.splice(index, 1);
-		}
+		addMovie: (state, movie) => {
+			state.movies.push(movie)
+			console.log("salut");
+		},
+		removeMovie: (state, id) =>{
+			if(id !== -1)
+				state.movies.splice(id,1);
+		},
+		editMovie: (state, movie) =>{
+			if(state.movies.findIndex(m => m.id === movie.id) !== -1)
+				state.movies.splice(state.movies.findIndex(m => m.id === movie.id),1, movie);
+		},
 	},
 	actions: {
-		addMovie(context) {
-
-			context.commit('addMovie');
+		allMovies (context) {
+			Axios.get(url + '/movies/all')
+				.then(response => {
+					context.commit('allMovies', response.data)
+				})
 		},
-		removeMovie(context, index) {
-			context.commit('removeMovie', index);
-		}
+		addMovie (context, movie) {
+			return new Promise((resolve, reject) => {
+				Axios.post(url + '/movies', movie)
+					.then(response => {
+						context.commit('addMovie', response.data);
+						resolve(response.data);
+					})
+			});
+		},
+		removeMovie (context, id) {
+			Axios.put(url + '/movies/:id', { params: {id: id} })
+				.then(response => {
+					context.commit('removeMovie', id)
+				})
+		},
+		editMovie (context, movie) {
+			Axios.put(url + 'movies/edit/:movie', movie)
+				.then(response => {
+					context.commit('editMovie', response.data)
+				})
+		},
 	}
 });

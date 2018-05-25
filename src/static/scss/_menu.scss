@@ -1,6 +1,10 @@
 .menu {
+	position: absolute;
+	left : 0;
+	top : 0;
 	background-color: $primary-color;
 	height: 100vh;
+	z-index: 2;
 	.menu-logo {
 		margin: 10px auto 10px auto;
 		display: block;
@@ -14,7 +18,7 @@
 		margin : 0 10px 0 0;
 	}
 
-	input {
+	input, select, textarea {
 		background-color: $primary-color-darker;
 		border-color: $primary-color-lighter;
 		color : $primary-color-lighter;
@@ -22,6 +26,29 @@
 			color : $primary-color-lighter;
 			opacity: 1;
 		}
+		&::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			display: none;
+		}
 	}
+	.menu-header {
+		margin-bottom : 20px;
+	}
+
+	.menu-backbutton {
+		margin-right:25px;
+
+		&:hover { color : white }
+	}
+
 }
+
+.menu.absolute {
+	padding:10px 20px;
+	position: absolute;
+	left : 0;
+	top : 0;
+	z-index: 1;
+}
+
 

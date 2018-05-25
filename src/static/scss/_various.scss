@@ -22,3 +22,7 @@ body {
 .white {
 	color:white;
 }
+
+input:focus {
+	border-color: white;
+}

@@ -1,0 +1,70 @@
+$darkgrey : #16191c;
+$lightgrey : #575757;
+.card {
+	margin-top:10px;
+	box-shadow: none;
+	z-index: 0;
+	background-color: $secondary-color;
+	header {
+		.movie-title {
+			font-weight: bolder;
+		}
+		.movie-director {
+			color: $lightgrey;
+			font-weight:normal;
+			font-size: medium;
+		}
+		.movie-year {
+			color: $lightgrey;
+			font-weight:lighter;
+			font-size: small;
+		}
+	}
+}
+
+
+.background-overlay {
+	position: absolute;
+	background-color: $darkgrey;
+	opacity: 0;
+	transition: .5s ease;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+.overlay {
+	position: absolute;
+	top:0;
+	left:0;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .1s ease;
+	cursor: pointer;
+
+	.details {
+		text-align: center;
+		a {
+			margin: 0 0 15px 10px;
+			color: white;
+			&:hover {
+				color: $lightgrey;
+			}
+		}
+	}
+}
+
+.image:hover {
+	.background-overlay {
+		opacity: 0.6;
+	}
+	.overlay {
+		opacity: 1;
+	}
+}
+
+

@@ -4,6 +4,7 @@
   "description": "IMDB Project for LP DAWIN Alt",
   "main": "src/node/main.js",
   "scripts": {
+    "truc": "npm install && node_modules/.bin/webpack --progress --hide-modules && node src/node/app.js",
     "build": "webpack --progress --hide-modules",
     "serve": "webpack-dev-server --open --hot"
   },
@@ -11,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "animejs": "^2.2.0",
+    "axios": "^0.18.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",

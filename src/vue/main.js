@@ -11,9 +11,6 @@ import 'normalize.css'
 import 'bulma/bulma.sass'
 import '../static/scss/all.scss'
 
-//Scripts
-import anime from 'animejs'
-
 //Vue
 import Vue from 'vue'
 import VueRouter from 'vue-router';
@@ -23,10 +20,11 @@ import { movieStore } from './store';
 import app from '../vue/app.vue'
 
 // Components
-import movieItem from '../vue/components/thumbnail.vue';
-import navbar from './components/menuSidebar';
+import movieItem from './components/movieThumbnail.vue';
+import menuSidebar from './components/menuSidebar';
+
 Vue.component('movie-thumbnail', movieItem);
-Vue.component('navbar', navbar);
+Vue.component('menu-sidebar', menuSidebar);
 
 // Options
 Vue.options.devtools = true;

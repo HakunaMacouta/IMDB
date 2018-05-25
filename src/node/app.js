@@ -9,13 +9,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
+
+const app = express();
+module.exports = app;
+
 require('./database.js');
 require('./routes.js');
 
 const port = 3000;
-
-const app = express();
-module.exports = app;
 
 app.use(bodyParser.json()); //parse JSON body
 app.use(bodyParser.urlencoded()); //parse x-www-form-urlencoded body

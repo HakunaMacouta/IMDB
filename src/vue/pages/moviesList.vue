@@ -1,28 +1,7 @@
 <template>
 	<div id="container-movies-list" class="column">
-		<!--<div class="columns">-->
-			<!--<div class="column">-->
-				<!--<div class="control has-icons-right">-->
-					<!--<input class="input is-medium" type="text" placeholder="Search">-->
-					<!--<span class="icon is-right">-->
-					<!--<i class="fas fa-search"></i>-->
-				<!--</span>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="white vertical-align column is-1">-->
-				<!--Movies : {{movies_search.length}}-->
-			<!--</div>-->
-			<!--<div class="column is-1">-->
-				<!--<router-link :to="'/add'" class="vertical-align button is-dark">-->
-					<!--<span>Add</span>-->
-					<!--<span class="icon">-->
-     					 <!--<i class="fas fa-plus"></i>-->
-    				<!--</span>-->
-				<!--</router-link>-->
-			<!--</div>-->
-		<!--</div>-->
-
 		<div id="movie-list" class="columns">
+			<div class="column is-2" style="margin: 5px"></div>
 			<movie-thumbnail class="movie-item" v-for="movie in movies_search" v-bind:key="movie.id"
 						v-bind:movie="movie" />
 		</div>
@@ -38,6 +17,10 @@
 				search:""
 			}
 		},
+		created : function() {
+			console.log(new Date("06/01/1975").toDateString());
+			this.$store.dispatch('allMovies');
+		},
 		methods: {
 		},
 		computed: {
@@ -49,4 +32,7 @@
 </script>
 
 <style scoped lang="scss">
+	#container-movie-list {
+
+	}
 </style>

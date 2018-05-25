@@ -8,10 +8,9 @@
  */
 
 let database = require('./database.js');
+let app = require('./app');
 
-
-app.get('/api/movies/all', database.list);
-
+app.get('/api/movies/all', database.all);
 app.get('/api/movies/:id', database.view);
-app.post('api/movies/:id', database.update);
-app.post('api/movies', database.add);
+app.post('/api/movies/:id', database.update);
+app.post('/api/movies', database.add);

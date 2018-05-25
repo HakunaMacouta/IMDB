@@ -6,7 +6,7 @@
  * this stuff is worth it, you can buy me a beer in return.   Thomas Blanc
  * ----------------------------------------------------------------------------
  */
-const dbFile = '.movies.db';
+const dbFile = './movies.db';
 const sqlite = require('sqlite3').verbose();
 
 let db = new sqlite.Database(dbFile, (err) => {
@@ -16,20 +16,28 @@ let db = new sqlite.Database(dbFile, (err) => {
 	console.log('Connected to the movies database.');
 });
 
-exports.list = function(req, res) {
-	console.log("list");
+exports.all = function(req, res) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	let movies = [];
+	db.all("SELECT * FROM movie", [], (err, rows) => {
+		if (err) {
+			throw err;
+		}
+		res.send(rows);
+	});
 };
 
 exports.view = function(req, res) {
-	console.log("view");
+	res.send('view')
 };
 
 exports.add = function(req, res) {
 	console.log("add");
+	res.send('add')
 };
 
 exports.update = function(req, res) {
-	console.log("update");
+	res.send('update')
 };
 
 

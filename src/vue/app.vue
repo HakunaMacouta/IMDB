@@ -2,6 +2,7 @@
 	<div>
 		<div class="columns">
 			<menu-sidebar />
+			<menu-form />
 			<router-view></router-view>
 		</div>
 		<!--<div>-->
@@ -21,7 +22,10 @@
 </template>
 
 <script>
+	import MenuForm from "./components/menuForm";
+
 	export default {
+		components: {MenuForm}
 
 	}
 </script>
