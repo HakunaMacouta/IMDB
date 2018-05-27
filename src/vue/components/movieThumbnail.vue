@@ -2,16 +2,18 @@
 	<div class="column is-12-mobile is-4-tablet is-3-desktop is-2-fullhd">
 		<div class="card">
 			<div class="card-image">
-				<figure class="image">
-					<img :src="movie.poster_url" alt="Movie Poster">
-					<div v-on:click="movieDetails" class="background-overlay">
-					</div>
-					<div class="overlay">
-						<div class="details">
-							<router-link :to="'/movie/' + movie.id" class="fas fa-lg fa-search"/>
+				<router-link :to="'/movie/' + movie.id">
+					<figure class="image">
+						<img :src="movie.poster_url" alt="Movie Poster">
+						<div class="background-overlay">
 						</div>
-					</div>
-				</figure>
+						<div class="overlay">
+							<div class="details">
+								<i class="fas fa-lg fa-search"></i>
+							</div>
+						</div>
+					</figure>
+				</router-link>
 			</div>
 			<header>
 				<div>
@@ -39,6 +41,7 @@
 		},
 		methods: {
 			movieDetails : function(movie) {
+				console.log("thumbnail clicked");
 				this.$router.push({name : 'details', params : {movie}});
 			}
 		},

@@ -20,10 +20,10 @@
 
 	input, select, textarea {
 		background-color: $primary-color-darker;
-		border-color: $primary-color-lighter;
-		color : $primary-color-lighter;
+		border-color: $primary-color-light;
+		color : $primary-color-light;
 		&::placeholder {
-			color : $primary-color-lighter;
+			color : $primary-color-light;
 			opacity: 1;
 		}
 		&::-webkit-inner-spin-button {

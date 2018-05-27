@@ -6,7 +6,8 @@
   "scripts": {
     "truc": "npm install && node_modules/.bin/webpack --progress --hide-modules && node src/node/app.js",
     "build": "webpack --progress --hide-modules",
-    "serve": "webpack-dev-server --open --hot"
+    "dev-client": "webpack-dev-server --open --hot",
+    "dev-server": "nodemon src/node/app.js"
   },
   "author": "Thomas Blanc <thomas.hakunamacouta.blanc@gmail.com>",
   "license": "ISC",
@@ -29,6 +30,7 @@
     "vue": "^2.5.15",
     "vue-loader": "^14.2.1",
     "vue-router": "^3.0.1",
+    "vue-star-rating": "^1.6.0",
     "vue-template-compiler": "^2.5.15",
     "vuex": "^3.0.1",
     "webpack-cli": "^2.0.11",
@@ -37,9 +39,10 @@
   "devDependencies": {
     "cz-conventional-changelog": "^2.1.0",
     "node-sass": "^4.7.2",
+    "nodemon": "^1.17.5",
     "sass-loader": "^6.0.7",
-    "webpack": "^4.1.1",
-    "sqlite3": "latest"
+    "sqlite3": "latest",
+    "webpack": "^4.1.1"
   },
   "config": {
     "commitizen": {

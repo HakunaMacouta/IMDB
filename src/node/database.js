@@ -6,7 +6,8 @@
  * this stuff is worth it, you can buy me a beer in return.   Thomas Blanc
  * ----------------------------------------------------------------------------
  */
-const dbFile = './movies.db';
+let path = require("path");
+const dbFile = path.join(__dirname, 'movies.db');
 const sqlite = require('sqlite3').verbose();
 
 let db = new sqlite.Database(dbFile, (err) => {
@@ -26,13 +27,17 @@ exports.all = function(req, res) {
 		res.send(rows);
 	});
 };
-
 exports.view = function(req, res) {
 	res.send('view')
 };
 
 exports.add = function(req, res) {
-	console.log("add");
+	console.log(req);
+	db.get("INSERT INTO movie (title, year, lang, firstname, lastname, nationality, birthdate, genre, synopsis, mark, poster_url) VALUES(?)", [movie], (err, row) => {
+		if(err) {
+			throw err;
+		}
+	});
 	res.send('add')
 };
 

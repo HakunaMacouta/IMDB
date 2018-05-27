@@ -22,10 +22,11 @@ export const movieStore = new Vuex.Store({
 	},
 	mutations: {
 		allMovies: (state, movies) => {
+			console.log("AJOUTE TOI");
 			state.movies = movies
 		},
 		addMovie: (state, movie) => {
-			state.movies.push(movie)
+			state.movies.push(movie);
 			console.log("salut");
 		},
 		removeMovie: (state, id) =>{
@@ -39,11 +40,13 @@ export const movieStore = new Vuex.Store({
 	},
 	actions: {
 		allMovies (context) {
+			console.log("dispatched");
 			Axios.get(url + '/movies/all')
 				.then(response => {
 					context.commit('allMovies', response.data)
 				})
 		},
+
 		addMovie (context, movie) {
 			return new Promise((resolve, reject) => {
 				Axios.post(url + '/movies', movie)
@@ -54,16 +57,23 @@ export const movieStore = new Vuex.Store({
 			});
 		},
 		removeMovie (context, id) {
-			Axios.put(url + '/movies/:id', { params: {id: id} })
+			Axios.delete(url + '/movies/:id', { params: {id: id } } )
 				.then(response => {
 					context.commit('removeMovie', id)
 				})
 		},
 		editMovie (context, movie) {
-			Axios.put(url + 'movies/edit/:movie', movie)
+			Axios.put(url + 'movies/:movie', movie)
 				.then(response => {
 					context.commit('editMovie', response.data)
 				})
 		},
+	},
+	getters : {
+		getMovieById: (state) => (id) => {
+			console.log(state.movies.find(movie => movie.id === id));
+			return state.movies.find(movie => movie.id === id);
+		}
 	}
 });
+

@@ -9,9 +9,11 @@
 
 $primary-color : #1D1F20;
 $primary-color-darker : #151617;
-$primary-color-lighter : #505558;
+$primary-color-light: #505558;
+$primary-color-lighter: #858d92;
 $secondary-color : #F8F8F8;
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import "various";
 @import "menu";
 @import "thumbnail";
+@import "details";

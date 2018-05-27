@@ -1,0 +1,19 @@
+.details-image {
+	margin:20px;
+	img { width:100%; display : block; margin : 0 auto; }
+}
+
+.details-content {
+	margin : 20px 20px 20px 0;
+	h1 {
+		font-size: xx-large;
+		font-weight: bolder;
+		span {
+			font-size: large;
+			font-weight: bold;
+		}
+	}
+	h2 { font-size: large; font-style: italic; }
+	h3 { font-size: large; font-weight: bold; margin-top : 10px; }
+	p { padding-left : 10px; border-left: 2px solid $primary-color-lighter; }
+}

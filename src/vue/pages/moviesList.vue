@@ -18,7 +18,6 @@
 			}
 		},
 		created : function() {
-			console.log(new Date("06/01/1975").toDateString());
 			this.$store.dispatch('allMovies');
 		},
 		methods: {

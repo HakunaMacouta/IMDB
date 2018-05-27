@@ -13,11 +13,14 @@ const fs = require('fs');
 const app = express();
 module.exports = app;
 
+
 require('./database.js');
 require('./routes.js');
 
 const port = 3000;
 
 app.use(bodyParser.json()); //parse JSON body
-app.use(bodyParser.urlencoded()); //parse x-www-form-urlencoded body
+app.use(bodyParser.urlencoded({
+	extended: true
+})); //parse x-www-form-urlencoded body
 app.listen(port, () => console.log('node server listening on port ' + port.toString()));
