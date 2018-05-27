@@ -10,7 +10,16 @@
 let database = require('./database.js');
 let app = require('./app');
 
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	res.header("Access-Control-Allow-Methods", "GET, OPTIONS, POST, DELETE, PUT");
+	next();
+});
+
 app.get('/api/movies/all', database.all);
 app.get('/api/movies/:id', database.view);
-app.post('/api/movies/:id', database.update);
+app.delete('/api/movies/:id', database.delete);
+app.put('/api/movies/:id', database.update);
+app.put('/api/movies/:id/mark', database.mark);
 app.post('/api/movies', database.add);

@@ -9,6 +9,9 @@
 let path = require("path");
 const dbFile = path.join(__dirname, 'movies.db');
 const sqlite = require('sqlite3').verbose();
+const imdb = require('imdb-api');
+const apikey = "a9c723f0";
+const default_poster = '/src/static/img/default_poster.png';
 
 let db = new sqlite.Database(dbFile, (err) => {
 	if(err) {
@@ -18,8 +21,6 @@ let db = new sqlite.Database(dbFile, (err) => {
 });
 
 exports.all = function(req, res) {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	let movies = [];
 	db.all("SELECT * FROM movie", [], (err, rows) => {
 		if (err) {
 			throw err;
@@ -31,18 +32,39 @@ exports.view = function(req, res) {
 	res.send('view')
 };
 
-exports.add = function(req, res) {
-	console.log(req);
-	db.get("INSERT INTO movie (title, year, lang, firstname, lastname, nationality, birthdate, genre, synopsis, mark, poster_url) VALUES(?)", [movie], (err, row) => {
-		if(err) {
+exports.delete = function(req, res) {
+	db.run("DELETE FROM movie WHERE id=?", [req.params.id], function(err) {
+		if(err)
 			throw err;
-		}
-	});
+		res.send('delete')
+	})
+};
+
+exports.add = function(req, res) {
+	//TODO FIND A BETTER WAY TO INSERT, it's messy like this.
+	let movie = req.body;
+	db.get("INSERT INTO movie (title, year, lang, genre, synopsis, firstname, lastname, birthdate, nationality, poster_url) " +
+		"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+		movie.title, movie.year, movie.lang, movie.genre, movie.synopsis, movie.firstname, movie.lastname, movie.birthdate, movie.nationality, movie.poster_url,
+		(err) => {
+			if(err) {
+				throw err;
+			}
+		});
 	res.send('add')
 };
 
 exports.update = function(req, res) {
 	res.send('update')
+};
+
+exports.mark = function(req, res) {
+	console.log(req.body);
+	db.run("UPDATE movie SET mark=? WHERE id=?", [req.body.rating, req.params.id], function(err) {
+		if(err)
+			throw err;
+		res.send('update mark')
+	})
 };
 
 

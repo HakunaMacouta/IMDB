@@ -1,9 +1,11 @@
 <template>
 	<div class="column is-2 menu absolute" ref="form">
 		<div class="menu-header">
-			<span v-on:click="closeForm" class="menu-backbutton fas fa-lg fa-angle-double-left"></span><span class="menu-label">Add Movie</span>
+			<span v-on:click="closeForm" class="menu-backbutton fas fa-lg fa-angle-double-left"></span>
+			<span v-if="$route.name==='list'" class="menu-label">Add Movie</span>
+			<span v-else-if="$route.name==='details'" class="menu-label">Edit Movie</span>
 		</div>
-		<form id="addForm" @submit="submitForm" method="post">
+		<form id="addForm" @submit.prevent="submitForm" method="post">
 			<p class="menu-label">
 				Movie
 			</p>
@@ -15,8 +17,9 @@
 			<div class="field">
 				<div class="control">
 					<div class="select">
-						<select class="year" title="year">
-							<option name="year" v-model="movie.year" v-for="i in 150">{{ new Date().getFullYear() - i  + 1}}</option>
+						<select v-model="movie.year" class="year" title="year" name="year" >
+							<option selected disabled hidden>Release year</option>
+							<option v-for="i in 150" :value="new Date().getFullYear() - i  + 1">{{ new Date().getFullYear() - i  + 1}}</option>
 						</select>
 					</div>
 				</div>
@@ -24,8 +27,9 @@
 			<div class="field">
 				<div class="control">
 					<div class="select">
-						<select class="lang" title="genre">
-							<option name="lang" v-model="movie.lang" v-for="nat in this.$store.state.nationality">{{nat}}</option>
+						<select v-model="movie.lang" class="lang" name="lang" title="lang">
+							<option value="" selected disabled hidden>Film nationality</option>
+							<option v-for="nat in this.$store.state.nationality" :value="nat">{{nat}}</option>
 						</select>
 					</div>
 				</div>
@@ -33,8 +37,9 @@
 			<div class="field">
 				<div class="control">
 					<div class="select">
-						<select class="lang" title="genre">
-							<option name="genre" v-model="movie.genre" v-for="genre in this.$store.state.genres">{{genre}}</option>
+						<select v-model="movie.genre" class="lang" title="genre" name="genre">
+							<option value="" selected disabled hidden>Genre</option>
+							<option v-for="genre in this.$store.state.genres" :value="genre">{{genre}}</option>
 						</select>
 					</div>
 				</div>
@@ -65,8 +70,9 @@
 			<div class="field">
 				<div class="control">
 					<div class="select">
-						<select class="lang" title="genre">
-							<option name="nationality" v-model="movie.nationality" v-for="nat in this.$store.state.nationality">{{nat}}</option>
+						<select v-model="movie.nationality" class="lang" title="genre" name="nationality">
+							<option value="" selected disabled hidden>Director nationality</option>
+							<option v-for="nat in this.$store.state.nationality" :value="nat">{{nat}}</option>
 						</select>
 					</div>
 				</div>
@@ -75,7 +81,7 @@
 				<div class="control">
 					<button type="submit" class="button is-link">Submit</button>
 				</div>
-				<div class="control">
+				<div v-show="$route.name==='list'" class="control">
 					<button v-on:click="resetForm" class="button is-text">Cancel</button>
 				</div>
 			</div>
@@ -95,12 +101,13 @@
 					title : '',
 					year : 0,
 					lang : '',
-					synopsis : '',
 					genre : '',
+					synopsis : '',
 					firstname : '',
 					lastname : '',
 					birthdate : null,
 					nationality : '',
+					poster_url : '/src/static/img/default_poster.png',
 				}
 			}
 		},
@@ -113,12 +120,25 @@
 					easing: 'easeInOutQuart'
 				})
 			},
+			created : function() {
+				console.log("form mounted");
+				if(this.$route.name === 'details' ) {
+					this.movie = this.$store.getters.getMovieById(this.$route.params.id);
+					console.log(this.movie);
+				}
+			},
 			resetForm : function() {
 				document.getElementById("addForm").reset();
 			},
 			submitForm: function() {
 				console.log("submitForm");
-				this.$store.dispatch('addMovie', this.movie);
+				if(this.$route.name === 'list') {
+					this.$store.dispatch('addMovie', this.movie).then(()=> {
+						this.$store.dispatch('allMovies')
+					});
+				} else if(this.$route.name === 'details') {
+					this.$store.dispatch('editMovie', this.movie);
+				}
 			}
 		}
 	}

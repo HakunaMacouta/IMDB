@@ -1,6 +1,6 @@
 .details-image {
 	margin:20px;
-	img { width:100%; display : block; margin : 0 auto; }
+	img { width:70%; display : block; margin : 0 auto; }
 }
 
 .details-content {
@@ -16,4 +16,13 @@
 	h2 { font-size: large; font-style: italic; }
 	h3 { font-size: large; font-weight: bold; margin-top : 10px; }
 	p { padding-left : 10px; border-left: 2px solid $primary-color-lighter; }
+}
+
+.ad {
+	margin:0 100px;
+	img {
+		display: block;
+		margin: 0 auto;
+		width:80%
+	}
 }

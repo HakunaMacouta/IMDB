@@ -8,9 +8,7 @@
  */
 import VueRouter from 'vue-router';
 import moviesList from './pages/moviesList'
-import movieEdit from './pages/movieEdit'
 import movieDetails from './pages/movieDetails'
-import movieAdd from './pages/movieAdd'
 
 let routes = [
 	{

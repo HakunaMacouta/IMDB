@@ -22,9 +22,11 @@ import app from '../vue/app.vue'
 // Components
 import movieItem from './components/movieThumbnail.vue';
 import menuSidebar from './components/menuSidebar';
+import menuForm from './components/menuForm';
 
 Vue.component('movie-thumbnail', movieItem);
 Vue.component('menu-sidebar', menuSidebar);
+Vue.component('menu-form', menuForm);
 
 // Options
 Vue.options.devtools = true;

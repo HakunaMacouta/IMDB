@@ -1,5 +1,6 @@
 <template>
 	<div id="container-movies-list" class="column">
+		<menu-form></menu-form>
 		<div id="movie-list" class="columns">
 			<div class="column is-2" style="margin: 5px"></div>
 			<movie-thumbnail class="movie-item" v-for="movie in movies_search" v-bind:key="movie.id"
@@ -17,7 +18,8 @@
 				search:""
 			}
 		},
-		created : function() {
+		mounted : function() {
+			console.log("mounted");
 			this.$store.dispatch('allMovies');
 		},
 		methods: {

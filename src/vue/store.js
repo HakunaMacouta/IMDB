@@ -22,14 +22,12 @@ export const movieStore = new Vuex.Store({
 	},
 	mutations: {
 		allMovies: (state, movies) => {
-			console.log("AJOUTE TOI");
 			state.movies = movies
 		},
 		addMovie: (state, movie) => {
 			state.movies.push(movie);
-			console.log("salut");
 		},
-		removeMovie: (state, id) =>{
+		deleteMovie: (state, id) =>{
 			if(id !== -1)
 				state.movies.splice(id,1);
 		},
@@ -37,10 +35,14 @@ export const movieStore = new Vuex.Store({
 			if(state.movies.findIndex(m => m.id === movie.id) !== -1)
 				state.movies.splice(state.movies.findIndex(m => m.id === movie.id),1, movie);
 		},
+		setRating: (state, payload) => {
+			if(payload.id !== -1) {
+				state.movies.find(m => m.id === payload.id).mark = payload.rating;
+			}
+		}
 	},
 	actions: {
 		allMovies (context) {
-			console.log("dispatched");
 			Axios.get(url + '/movies/all')
 				.then(response => {
 					context.commit('allMovies', response.data)
@@ -51,27 +53,35 @@ export const movieStore = new Vuex.Store({
 			return new Promise((resolve, reject) => {
 				Axios.post(url + '/movies', movie)
 					.then(response => {
-						context.commit('addMovie', response.data);
-						resolve(response.data);
+						context.commit('addMovie');
 					})
 			});
 		},
-		removeMovie (context, id) {
-			Axios.delete(url + '/movies/:id', { params: {id: id } } )
-				.then(response => {
-					context.commit('removeMovie', id)
-				})
+		deleteMovie (context, id) {
+			return new Promise((resolve, reject) => {
+				Axios.delete(url + '/movies/' + id )
+					.then(response => {
+						console.log(response);
+						context.commit('removeMovie', id)
+						resolve();
+					})
+			});
 		},
-		editMovie (context, movie) {
-			Axios.put(url + 'movies/:movie', movie)
+		editMovie (context, id) {
+			Axios.put(url + 'movies/:id', id)
 				.then(response => {
 					context.commit('editMovie', response.data)
 				})
 		},
+		setRating(context, payload) {
+			Axios.put(url + '/movies/' + payload.id + '/mark', { rating : payload.rating } )
+				.then(response => {
+					context.commit('setRating', payload);
+				})
+		}
 	},
 	getters : {
 		getMovieById: (state) => (id) => {
-			console.log(state.movies.find(movie => movie.id === id));
 			return state.movies.find(movie => movie.id === id);
 		}
 	}
