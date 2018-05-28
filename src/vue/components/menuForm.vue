@@ -77,6 +77,11 @@
 					</div>
 				</div>
 			</div>
+			<div class="field">
+				<div class="control">
+					<input name="imbd" v-model="movie.imdb" class="input" type="text" placeholder="IMDB ID : tt0401792">
+				</div>
+			</div>
 			<div class="field is-grouped">
 				<div class="control">
 					<button type="submit" class="button is-link">Submit</button>
@@ -108,6 +113,7 @@
 					birthdate : null,
 					nationality : '',
 					poster_url : '/src/static/img/default_poster.png',
+					imdb : ''
 				}
 			}
 		},

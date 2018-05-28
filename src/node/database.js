@@ -9,6 +9,7 @@
 let path = require("path");
 const dbFile = path.join(__dirname, 'movies.db');
 const sqlite = require('sqlite3').verbose();
+const Axios = require('axios');
 const imdb = require('imdb-api');
 const apikey = "a9c723f0";
 const default_poster = '/src/static/img/default_poster.png';
@@ -43,15 +44,21 @@ exports.delete = function(req, res) {
 exports.add = function(req, res) {
 	//TODO FIND A BETTER WAY TO INSERT, it's messy like this.
 	let movie = req.body;
-	db.get("INSERT INTO movie (title, year, lang, genre, synopsis, firstname, lastname, birthdate, nationality, poster_url) " +
-		"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-		movie.title, movie.year, movie.lang, movie.genre, movie.synopsis, movie.firstname, movie.lastname, movie.birthdate, movie.nationality, movie.poster_url,
-		(err) => {
-			if(err) {
-				throw err;
-			}
-		});
-	res.send('add')
+	let poster_url= movie.poster_url;
+	Axios.get('http://omdbapi.com/?apikey=' + apikey + '&i=' + movie.imdb).then(response => {
+		console.log(response.data);
+		if(response.data.Poster)
+			poster_url = response.data.Poster;
+		db.get("INSERT INTO movie (title, year, lang, genre, synopsis, firstname, lastname, birthdate, nationality, poster_url) " +
+			"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+			movie.title, movie.year, movie.lang, movie.genre, movie.synopsis, movie.firstname, movie.lastname, movie.birthdate, movie.nationality, poster_url,
+			(err) => {
+				if(err) {
+					throw err;
+				}
+			});
+		res.send('add')
+	});
 };
 
 exports.update = function(req, res) {

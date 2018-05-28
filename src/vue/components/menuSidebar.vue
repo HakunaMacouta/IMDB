@@ -4,7 +4,7 @@
 		<img class="menu-logo" src="/src/static/img/logo_flat.png" alt="logo TV Time" />
 		<div v-if="this.$route.name === 'list'"
 			 class="menu-item control has-icons-left has-icons-right">
-			<input class="input is-small" type="email" placeholder="Search">
+			<input class="input is-small" v-model="search" type="text" @change="saveSearch" placeholder="Search">
 			<span class="icon is-small is-right">
     			<i class="fas fa-search"></i>
   			</span>
@@ -29,6 +29,11 @@
 	export default {
 		components: {MenuForm},
 		name: "menu-sidebar",
+		data() {
+			return {
+				search : ''
+			}
+		},
 		methods : {
 			openAddSidebar : function (event) {
 				anime({
@@ -41,6 +46,10 @@
 				this.$store.dispatch('deleteMovie', Number(this.$route.params.id)).then(() => {
 					this.$router.push({ name : 'list'});
 				});
+			},
+			saveSearch : function() {
+				console.log("change");
+				this.$store.dispatch('saveSearch', this.search);
 			}
 		}
 	}

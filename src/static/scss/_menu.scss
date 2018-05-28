@@ -1,5 +1,5 @@
 .menu {
-	position: absolute;
+	position: fixed;
 	left : 0;
 	top : 0;
 	background-color: $primary-color;
@@ -45,7 +45,7 @@
 
 .menu.absolute {
 	padding:10px 20px;
-	position: absolute;
+	position: fixed;
 	left : 0;
 	top : 0;
 	z-index: 1;
