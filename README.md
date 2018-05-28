@@ -6,4 +6,4 @@ Thomas BLANC
 ## Installation
 
 build project :
-''' npm install && node_modules/.bin/webpack --progress --hide-modules && node src/node/app.js '''
+```npm install && node_modules/.bin/webpack --progress --hide-modules && node src/node/app.js```
